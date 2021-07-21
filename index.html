@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="init()">
+    <h1>Hello</h1>
+    <table class="menu">
+        <tr>
+            <td class="level" onclick="changeLevel('1')">Easy</td>
+            <td></td>
+            <td rowspan="3" class="gameStarter" onclick="init()"></td>
+        </tr>
+        <tr>
+            <td class="level" onclick="changeLevel('2')">medium</td>
+            <td class="stopwatch">00:00:000</td>
+        </tr>
+        <tr>
+            <td class="level" onclick="changeLevel('3')">difficult</td>
+            <td>flag</td>
+        </tr>
+    </table>
+
+
+    <ul>
+        <li>
+            <div class="radio">Radio</div>
+            <div class="gameStarter">Start!!</div>
+        </li>
+        <li>
+
+            <div class="stopwatch">00:00:000</div>
+        </li>
+    </ul>
+
+    <!-- <div class="stopwatch"></div> -->
+    <div class="container"></div>
+
+
+    <script src="js/util.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
