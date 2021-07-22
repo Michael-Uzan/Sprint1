@@ -29,7 +29,6 @@ function printMat(mat, selector) {
     elContainer.innerHTML = strHTML;
 }
 
-
 // location such as: {i: 2, j: 7}
 function renderCell(location, value) {
     // Select the elCell and set the value
@@ -43,6 +42,16 @@ function getImgHTML(imgName, imgClass = '') {
 }
 
 
+function CountCellMined() {
+    var CountCellMined = 0;
+    for (var i = 0; i < gBoard.length; i++) {
+        for (var j = 0; j < gBoard[0].length; j++) {
+            if (gBoard[i][j].isMine === true) CountCellMined++
+        }
+    }
+    return CountCellMined;
+}
+
 function findEmptyCell() {
     var emptyCellArray = [];
     for (var i = 0; i < gBoard.length; i++) {
@@ -54,7 +63,6 @@ function findEmptyCell() {
     shuffle(emptyCellArray);
     return drawNum(emptyCellArray);
 }
-
 
 function countNeighbors(cellI, cellJ, mat) {
     var neighborsCount = 0;
@@ -69,7 +77,6 @@ function countNeighbors(cellI, cellJ, mat) {
     }
     return neighborsCount;
 }
-
 
 function handleKeyMoveGamer(event) {
     // console.log('event.key', event.key);
@@ -100,7 +107,6 @@ function getClassName(location) { // {i:3,j:5}
     return cellClass;
 }
 
-
 function shuffle(items) {
     var randIdx, keep, i;
     for (i = items.length - 1; i > 0; i--) {
@@ -113,18 +119,15 @@ function shuffle(items) {
     return items;
 }
 
-
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min; //including minimum
 }
 
-
 function drawNum(nums) {
     return nums.pop()
 }
-
 
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
@@ -145,21 +148,17 @@ function copyMat(mat) {
     for (var i = 0; i < mat.length; i++) {
         newMat[i] = [];
         for (var j = 0; j < mat[0].length; j++) {
-            newMat[i][j] = mat[i][j];
+            newMat[i][j] = {};
+            newMat[i][j] = Object.assign(newMat[i][j], mat[i][j]);
+            // target = Object.assign(target, source);
         }
     }
     return newMat;
 }
 
-
 function getTime() {
     return new Date().toString().split(' ')[4];
 }
-
-
-
-// var gStartTime = Date.now();
-// var gTimerInterval;
 
 function startTimer() {
     gStartTime = Date.now(); //  gStartTime - need to be global
@@ -176,4 +175,67 @@ function timeCycle() {
 function stopTimer() {
     clearInterval(gTimerInterval);
     // var finishTime = document.querySelector('.stopwatch').innerHTML;  // string to print the timer
+}
+
+function addOnlyOneSelected(className) {
+    document.querySelector('.medium').classList.remove('selected')
+    document.querySelector('.easy').classList.remove('selected')
+    document.querySelector('.diff').classList.remove('selected')
+    document.querySelector(className).classList.add('selected')
+}
+
+function renderFlagCount(flagCount) {
+    document.querySelector('.flag').innerHTML = '<img src="img/flagSign.png" alt="" class="flagSign"></img>X' + flagCount;
+}
+
+function renderSafeCount(safeCount) {
+    if (safeCount === 0) document.querySelector('.safeCountiner').innerHTML = '<img onclick="safe()" class="safe" src="img/safe0.png" alt="">X' + safeCount;
+    else document.querySelector('.safeCountiner').innerHTML = '<img onclick="safe()" class="safe" src="img/safe.png" alt="">X' + safeCount;
+}
+
+function renderHintOn(hintNumber) {
+    document.querySelector('.hint' + hintNumber).src = 'img/lightOn.png';
+}
+
+
+function restartLevelLives() {
+    if (gLevel.size === 4) {
+        gLevel.lives = 1;
+        gLevel.safe = 1;
+    }
+    if (gLevel.size === 8) {
+        gLevel.lives = 2;
+        gLevel.safe = 2;
+    }
+    if (gLevel.size === 12) {
+        gLevel.lives = 3;
+        gLevel.safe = 3;
+    }
+    renderHeartCount(gLevel.lives);
+}
+
+function renderHeartCount(heartCount) {
+    document.querySelector('.heartCountiner').innerHTML = getImgHTML('heart' + heartCount + '.png', 'heart');
+}
+
+function findSafeCell() {
+    var safeCells = [];
+    for (var i = 0; i < gBoard.length; i++) {
+        for (var j = 0; j < gBoard[0].length; j++) {
+            if (!gBoard[i][j].isMine && !gBoard[i][j].isMarked && !gBoard[i][j].isShowen) {
+                safeCells.push({ i: i, j: j })
+                console.log('i,j', i, j)
+            }
+        }
+    }
+    safeCells = shuffle(safeCells);
+    return drawNum(safeCells);
+}
+
+function pushStepGame() {
+    gMemoryStepBoard.push(copyMat(gBoard));
+    var newStepGame = {};
+    newStepGame = Object.assign(newStepGame, gGame);
+    gMemoryStepGame.push(newStepGame)
+    gIsFirstUndo = true;
 }

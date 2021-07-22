@@ -5,45 +5,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mine Sweeper</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body onload="init()">
-    <h1>Hello</h1>
-    <table class="menu">
-        <tr>
-            <td class="level" onclick="changeLevel('1')">Easy</td>
-            <td></td>
-            <td rowspan="3" class="gameStarter" onclick="init()"></td>
-        </tr>
-        <tr>
-            <td class="level" onclick="changeLevel('2')">medium</td>
-            <td class="stopwatch">00:00:000</td>
-        </tr>
-        <tr>
-            <td class="level" onclick="changeLevel('3')">difficult</td>
-            <td>flag</td>
-        </tr>
-    </table>
+    <h1>Mine Sweeper</h1>
 
+    <div>
+        <table class="menu">
+            <tr>
+                <td class="level easy selected" onclick="changeLevel('1')">Easy</td>
+                <td class="heartCountiner"><img src="img/heart0.png" alt="" class="heart"></td>
+                <td class="hints">
+                    <img onclick="hint('1')" class="hint hint1" src="img/lightOff.png" alt="">
+                    <!-- <img onclick="hint('2')" class="hint hint2" src="img/lightOff.png" alt="">
+                <img onclick="hint('3')" class="hint hint3" src="img/lightOff.png" alt=""> -->
+                </td>
+                <td rowspan="3" class="gameStarter" onclick="init()"></td>
+                <td rowspan="3" class="undoHover"><img class="undoPhoto" src="img/undo.png" alt="" onclick="undoStep()">
+                </td>
+            </tr>
+            <tr>
+                <td class="level medium" onclick="changeLevel('2')">medium</td>
+                <td class="stopwatch">00:00:000</td>
+                <td class="safeCountiner"><img onclick="safe()" class="safe" src="img/safe.png" alt=""> X3</td>
+            </tr>
+            <tr>
+                <td class="level diff" onclick="changeLevel('3')">difficult</td>
+                <td class="flag"></td>
+                <td class="level manually" onclick="manual()">Manually Mode</td>
+            </tr>
+        </table>
 
-    <ul>
-        <li>
-            <div class="radio">Radio</div>
-            <div class="gameStarter">Start!!</div>
-        </li>
-        <li>
+    </div>
 
-            <div class="stopwatch">00:00:000</div>
-        </li>
-    </ul>
-
-    <!-- <div class="stopwatch"></div> -->
     <div class="container"></div>
-
-
+    <footer>
+        <div class="name">Michael Uzan</div>
+    </footer>
     <script src="js/util.js"></script>
+    <script src="js/algorytem.js"></script>
     <script src="js/main.js"></script>
 </body>
 

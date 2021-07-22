@@ -1,44 +1,41 @@
 body {
-    /* background-color: black; */
-    /* color:white; */
     text-align: center;
+    background-image: url(../img/background.png);
+    background-size:2000px;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-clip: border-box;
+    background-color:#86CA52 ;
+  }
+  h1{
+    color: #006234;
+    font: bold 30px Verdana;
   }
   .container{
     /* display: block; */
     /* display: inline-block; */
-      /* display: block; */
+      /* display: inline */
       /* transform: translate(45%, 0%); */
+      /* left: 800px; */
   }
-  /* .table{
-      height: 500px;
-      width: 500px; */
-  /* } */
+.table{
+      display: inline;
+}
   .cell {
     width: 40px;
     height: 40px;
     text-align: center;
     font-size: 1.5em;
     border: 2px solid #00AA4D;
+    border-radius: 5px;
     cursor: pointer;
+    background-color: white;
   }
-.food , .pacman, .flag, .mind, .number, .closed{
+.flag, .mind, .number, .closed{
     width: 40px;
     height: 40px;
     display: block;
   }
-  ul {
-      list-style: none;
-      display: inline-block;
-      display: none;
-}
-ul li {
-    background-color: #86CA52;
-    height: 80px;
-    width: 300px;
-    margin: 15px;
-    border: 10px solid #028849;
-    border-radius: 15px;
-}
 .stopwatch{
     margin: 30px;
 }
@@ -51,6 +48,7 @@ ul li {
     border: 5px solid #028849;
     border-radius: 15px;
     display: inline-block;
+    background-color: white;
 }
 .menu td{
     width: 200px;
@@ -58,6 +56,7 @@ ul li {
     text-align: center;
     font-size: 1.5em;
     border: 2px solid #00AA4D;
+    border-radius: 10px;
 }
 
 .face{
@@ -69,14 +68,38 @@ ul li {
 .level{
     cursor: pointer;
 }
-/* .radio {
-    width: 20%;
-    margin-left: 150px;
-    float: left;
-    background: #2a9d8f;
-    height: 80px;
-    border-radius:30px;
-    font-size: 30px;
-    border: 6px solid #f4a261;
-    font: 17px Verdana;
-  } */
+.level:hover{
+  background-color: rgba(255, 255, 157, 0.726);
+}
+  .selected{
+    background-color: #B2D031
+  }
+  .flagSign{
+     width:25px;
+      display: inline;
+      margin: 7px;
+  }
+  .heart{
+  height: 25px;
+  }
+  .hint{
+    width:45px;
+     display: inline;
+     margin: 2px;
+     cursor: pointer;
+ }
+ .safe{
+  width:80px;
+  cursor: pointer;
+ }
+.undoPhoto{
+  height: 100px;
+  cursor: pointer;
+}
+.name{
+  /* margin: 30px; */
+  background-color: rgba(160, 160, 36, 0.555);
+  bottom: 0px;
+  left: 45%;
+  position: absolute;
+}
