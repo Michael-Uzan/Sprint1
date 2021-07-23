@@ -185,7 +185,7 @@ function addOnlyOneSelected(className) {
 }
 
 function renderFlagCount(flagCount) {
-    document.querySelector('.flag').innerHTML = '<img src="img/flagSign.png" alt="" class="flagSign"></img>X' + flagCount;
+    document.querySelector('.flagTd').innerHTML = '<img src="img/flagSign.png" alt="" class="flagSign"></img>X' + flagCount;
 }
 
 function renderSafeCount(safeCount) {
@@ -238,4 +238,27 @@ function pushStepGame() {
     newStepGame = Object.assign(newStepGame, gGame);
     gMemoryStepGame.push(newStepGame)
     gIsFirstUndo = true;
+}
+
+function openModal() {
+    document.querySelector('.modal').style.display = 'inline';
+    if (gLevel.size === 4 && localStorage.bestScoreEasy) document.querySelector('.timeScore').innerHTML = '<br>' + localStorage.bestScoreEasy;
+    else if (gLevel.size === 8 && localStorage.bestScoreMed) document.querySelector('.timeScore').innerHTML = '<br>' + localStorage.bestScoreMed;
+    else if (gLevel.size === 16 && localStorage.bestScoreDiff) document.querySelector('.timeScore').innerHTML = '<br>' + localStorage.bestScoreDiff;
+    else document.querySelector('.timeScore').innerHTML = '<br> No best score found yet...';
+}
+
+
+function closeModal() {
+    document.querySelector('.modal').style.display = 'none';
+}
+
+
+function openModalHelp() {
+    document.querySelector('.modalHelp').style.display = 'inline';
+}
+
+
+function closeModalHelp() {
+    document.querySelector('.modalHelp').style.display = 'none';
 }

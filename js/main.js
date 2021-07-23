@@ -62,7 +62,7 @@ function init() {
 
 function startGame(elCell, i, j) {
     gGame.isFirstClick = false;
-    setMinesOnBoard(gLevel.mines, i, j)
+    setMinesOnBoard(gLevel.mines, i, j);
     setMinesNegsCount();
     console.table(gBoard);
     renderCellNumber(elCell, i, j)
@@ -107,9 +107,9 @@ function setMinesOnBoard(mines, i, j) {
     while (k !== gLevel.mines) {
 
         var loto = getRandomInt(0, 3);
-        if (loto === 0) var index = algo1(i, j)
-        if (loto === 1) var index = algo2(i)
-        if (loto === 2) var index = algo3(j)
+        if (loto === 0) var index = algo1(i, j);
+        if (loto === 1) var index = algo2(i);
+        if (loto === 2) var index = algo3(j);
         gBoard[index.i][index.j].isMine = true;
         k = CountCellMined()
     }
@@ -249,9 +249,45 @@ function checkGameVictory() {
         || (gGame.showenCount === (gLevel.size ** 2 - gLevel.mines))) {
         gGame.isOn = false;
         stopTimer();
+        bestScore();
         document.querySelector('.gameStarter').innerHTML = '<img class="face" src="img/win.png" alt="">';
         return true;
     } return false;
+}
+
+function bestScore() {
+    if (!gGame.secsPassed) return; // somteime in easy level game end after 0 sec.
+    if (typeof (Storage) !== "undefined") {
+        var min = gGame.secsPassed.slice(0, 2);
+        var sec = gGame.secsPassed.slice(3, 5);
+        var miliSec = gGame.secsPassed.slice(6);
+        if (gLevel.size === 4 && gGame.secsPassed) {
+
+            if (!localStorage.bestScore) localStorage.bestScoreEasy = min + ':' + sec + ':' + miliSec;
+            else if (+min < +localStorage.bestScoreEasy.slice(0, 2)) localStorage.bestScoreEasy = min + ':' + sec + ':' + miliSec;
+            else if (+min === +localStorage.bestScoreEasy.slice(0, 2) &&
+                +sec < +localStorage.bestScoreEasy.slice(3, 5)) localStorage.bestScoreEasy = min + ':' + sec + ':' + miliSec;
+            else if (+sec === +localStorage.bestScoreEasy.slice(3, 5) &&
+                +miliSec < +localStorage.bestScoreEasy.slice(6)) localStorage.bestScoreEasy = min + ':' + sec + ':' + miliSec;
+        } else if (gLevel.size === 8 && gGame.secsPassed) {
+
+            if (!localStorage.bestScore) localStorage.bestScoreMed = min + ':' + sec + ':' + miliSec;
+            else if (+min < +localStorage.bestScoreMed.slice(0, 2)) localStorage.bestScoreMed = min + ':' + sec + ':' + miliSec;
+            else if (+min === +localStorage.bestScoreMed.slice(0, 2) &&
+                +sec < +localStorage.bestScoreMed.slice(3, 5)) localStorage.bestScoreMed = min + ':' + sec + ':' + miliSec;
+            else if (+sec === +localStorage.bestScoreMed.slice(3, 5) &&
+                +miliSec < +localStorage.bestScoreMed.slice(6)) localStorage.bestScoreMed = min + ':' + sec + ':' + miliSec;
+        } else {
+            if (!localStorage.bestScore) localStorage.bestScoreDiff = min + ':' + sec + ':' + miliSec;
+            else if (+min < +localStorage.bestScoreDiff.slice(0, 2)) localStorage.bestScoreDiff = min + ':' + sec + ':' + miliSec;
+            else if (+min === +localStorage.bestScoreDiff.slice(0, 2) &&
+                +sec < +localStorage.bestScoreDiff.slice(3, 5)) localStorage.bestScoreDiff = min + ':' + sec + ':' + miliSec;
+            else if (+sec === +localStorage.bestScoreDiff.slice(3, 5) &&
+                +miliSec < +localStorage.bestScoreDiff.slice(6)) localStorage.bestScoreDiff = min + ':' + sec + ':' + miliSec;
+        }
+    } else {
+        document.getElementById(".timeScore").innerHTML = "Sorry, your browser does not support web storage...";
+    }
 }
 
 function flagClicked(event, i, j) {
@@ -375,7 +411,7 @@ function manual() {
 }
 
 function manualCellClicked(elCell, i, j) {
-    if (gGame.isOn || !gGame.isManuall) return;
+    if (gGame.isOn || !gGame.isManuall || gBoard[i][j].isMine) return;
     console.log('manuall')
     gBoard[i][j].isMine = true;
     renderCell({ i: i, j: j }, getImgHTML('mind.png', 'mind'))

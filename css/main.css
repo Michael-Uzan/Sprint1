@@ -11,13 +11,6 @@ body {
     color: #006234;
     font: bold 30px Verdana;
   }
-  .container{
-    /* display: block; */
-    /* display: inline-block; */
-      /* display: inline */
-      /* transform: translate(45%, 0%); */
-      /* left: 800px; */
-  }
 .table{
       display: inline;
 }
@@ -31,7 +24,7 @@ body {
     cursor: pointer;
     background-color: white;
   }
-.flag, .mind, .number, .closed{
+  .flag,.mind, .number, .closed{
     width: 40px;
     height: 40px;
     display: block;
@@ -48,7 +41,7 @@ body {
     border: 5px solid #028849;
     border-radius: 15px;
     display: inline-block;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.931);
 }
 .menu td{
     width: 200px;
@@ -75,7 +68,7 @@ body {
     background-color: #B2D031
   }
   .flagSign{
-     width:25px;
+     width:40px;
       display: inline;
       margin: 7px;
   }
@@ -102,4 +95,40 @@ body {
   bottom: 0px;
   left: 45%;
   position: absolute;
+}
+.score{
+  height: 50px;
+  cursor: pointer;
+  /* margin: 5px; */
+  /* padding: 15px; */
+}
+.modal{
+  display: none; 
+  background-color: #b3d031c7;
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  height: 450px;
+  width: 250px;
+  border-radius:15px;
+  font-size: 30px;
+  border: 5px solid #00AA4D;
+}
+.modalBottom{
+  float:right;
+  padding: 5px;
+  margin: 5px;
+}
+.modalHelp{
+  display: none; 
+  background-color: #b3d031e5;
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  height: 700px;
+  width: 270px;
+  border-radius:15px;
+  font-size: 22px;
+  border: 4px solid #00AA4D;
+  text-align: left;
 }

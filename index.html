@@ -10,20 +10,16 @@
 </head>
 
 <body onload="init()">
-    <h1>Mine Sweeper</h1>
+    <h1>Mine Sleeper</h1>
 
     <div>
         <table class="menu">
             <tr>
                 <td class="level easy selected" onclick="changeLevel('1')">Easy</td>
                 <td class="heartCountiner"><img src="img/heart0.png" alt="" class="heart"></td>
-                <td class="hints">
-                    <img onclick="hint('1')" class="hint hint1" src="img/lightOff.png" alt="">
-                    <!-- <img onclick="hint('2')" class="hint hint2" src="img/lightOff.png" alt="">
-                <img onclick="hint('3')" class="hint hint3" src="img/lightOff.png" alt=""> -->
-                </td>
+                <td class="hints"><img onclick="hint('1')" class="hint hint1" src="img/lightOff.png" alt=""></td>
                 <td rowspan="3" class="gameStarter" onclick="init()"></td>
-                <td rowspan="3" class="undoHover"><img class="undoPhoto" src="img/undo.png" alt="" onclick="undoStep()">
+                <td rowspan="2" class="undoHover"><img class="undoPhoto" src="img/undo.png" alt="" onclick="undoStep()">
                 </td>
             </tr>
             <tr>
@@ -33,14 +29,38 @@
             </tr>
             <tr>
                 <td class="level diff" onclick="changeLevel('3')">difficult</td>
-                <td class="flag"></td>
+                <td class="flagTd"></td>
                 <td class="level manually" onclick="manual()">Manually Mode</td>
+                <td><img onclick="openModalHelp()" src="img/help.png" class="score" alt=""><img onclick="openModal()"
+                        class="score" src="/img/score.png" alt="">
+                </td>
             </tr>
         </table>
 
     </div>
 
     <div class="container"></div>
+
+    <div class="modalHelp">
+        <button class="modalBottom" onclick="closeModalHelp()">X</button>
+        <div><br><br>
+            The goal of the game is to uncover all the cells that do
+            not contain mines without being "blown up" by clicking on a
+            cell with a mine underneath. <br> <br>
+            Left-click to reveal a cell. <br> <br>
+            Right-click to flag a cell. <br> <br>
+            Safe-Mode: Will mark a safe cell to click. <br> <br>
+            Hint-Mode: Left-click a cell to reveal all his neighbors for 1 sec. <br> <br>
+            Manually-Mode: Manually positioned mines and then play. <br> <br>
+            Undo: Go back one step in the game.
+        </div>
+    </div>
+
+    <div class="modal">
+        <button class="modalBottom" onclick="closeModal()">X</button>
+        <div><br><br>Your best score for this level: </div>
+        <div class="timeScore"><br>10.5</div>
+    </div>
     <footer>
         <div class="name">Michael Uzan</div>
     </footer>
